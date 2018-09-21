@@ -1,0 +1,52 @@
+{
+    "id": "Dagoma_discoeasy200_chimera",
+    "name": "Dagoma DiscoEasy200 Chimera",
+    "version": 2,
+    "inherits": "fdmprinter",
+    "metadata": {
+        "visible": true,
+        "author": "Frederic Aguiard",
+        "manufacturer": "Dagoma",
+        "file_formats": "text/x-gcode",
+        "icon": "icon_ultimaker2.png",
+        "platform": "discoeasy200.stl",
+        "platform_offset": [ 105, -59, 280],
+        "machine_extruder_trains":
+        {
+            "0": "dagoma_discoeasy200_chimera_extruder_1",
+            "1": "dagoma_discoeasy200_chimera_extruder_2"
+        }
+    },
+    "overrides": {
+        "machine_extruder_count": {"default_value": 2},
+        "machine_use_extruder_offset_to_offset_coords": {"default_value": false},
+        "machine_gcode_flavor": {"default_value": "Marlin"},
+        "machine_width": {"default_value": 211},
+        "machine_height": {"default_value": 181},
+        "machine_depth": {"default_value": 211},
+        "machine_center_is_zero": {"default_value": false},
+        "machine_nozzle_size": {"default_value": 0.4},
+        "machine_head_with_fans_polygon": {
+            "default_value": [
+                [16, 37],
+                [16, -65],
+                [-16, -65],
+                [16, 37]
+            ]
+        },
+        "gantry_height": {"default_value": 55},
+        "machine_heated_bed": {"default_value": true},
+        "prime_blob_enable": { "enabled": true },
+        "extruder_prime_pos_x": { "enabled": true},
+        "extruder_prime_pos_y": { "enabled": true},
+        "material_diameter": {"default_value": 1.75},
+        "machine_start_gcode": {
+            "default_value": "",
+            "value": "('M109 T1 S'+ str(int(extruderValue(1, 'material_print_temperature_layer_0')))+'\\n' if extruders_enabled_count==2 and extruderValue(1, 'prime_blob_enable') else '') + 'G90 ;Positionnement absolu\\nM107\\nG28 ;Initialisation des limites\\nM420 S1 ;Chargement cartographie plateau\\n\\n' + (';Amorce extrudeur 1\\nT0\\nG1 X'+str(int(extruderValue(0, 'extruder_prime_pos_x'))) + ' Y'+str(int(extruderValue(0, 'extruder_prime_pos_y')))+' Z3 F3000\\nG1 Z'+str(float(extruderValue(0, 'extruder_prime_pos_z')))+'\\nG92 E0\\nG1 E10 F200\\nG1 Z3\\nG92 E0;Reset extrudeur\\n' if extruderValue(0, 'prime_blob_enable') else '')+'\\n'+(';Amorce extrudeur 2\\nT1\\nG1 X'+str(int(extruderValue(1, 'extruder_prime_pos_x'))) + ' Y'+str(int(extruderValue(1, 'extruder_prime_pos_y')))+' Z3 F3000\\nG1 Z'+str(float(extruderValue(1, 'extruder_prime_pos_z')))+'\\nG92 E0\\nG1 E10 F200 ;Amorce extrudeur 2\\nG92 E0\\nT0\\nM104 T1 S'+str(int(extruderValue(1, 'material_standby_temperature'))) if extruders_enabled_count==2 and extruderValue(1, 'prime_blob_enable') else '') + '\\n\\n'"
+        },
+        "machine_end_gcode": {
+            "default_value": "",
+            "value": "'G91 ;Positionnement relatif\\n;Retract avant de relever la tête\\nT0\\nG1 E-1 F{retraction_speed}\\n'+('T1\\nG1 E-1 F{retraction_speed}\\n' if extruders_enabled_count == 2 else '') + '\\n;Relevage de la tête et rétraction\\nG1 Z+3\\nT0\\nE-1 F3000\\nM104 S0\\n' + ('T1\\nE-1 F3000\\nM104 T1 S0\\n' if extruders_enabled_count == 2 else '') +'M106 S255 ;Ventilateur pour accélérer le refroidissement des buses\\nM140 S0 ;Arrêt plateau chauffant\\n\\n;Repositionnement en butée X et Y\\nG90\\nG28 X Y\\n\\nM107 ;Arrêt ventilateur\\nM84 ;Arrêt moteurs\\n'"
+        }
+    }
+}
