@@ -126,7 +126,7 @@
                     "label": "Extruder End G-Code",
                     "description": "End g-code to execute whenever turning the extruder off.",
                     "type": "str",
-                    "default_value": "",
+                    "default_value": "G91 ;Relative positionning\nG1 Z5 ;Move 5mm up to avoid heating up the part while the other extruder temperature ramps up\nG90 ;Restore absolute positionning\n",
                     "settable_per_mesh": false,
                     "settable_per_extruder": true,
                     "settable_per_meshgroup": false,
