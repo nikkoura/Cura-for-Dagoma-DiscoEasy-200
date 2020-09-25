@@ -8,6 +8,7 @@
         "manufacturer": "E3D",
         "setting_version": 1,
         "visible": false,
+        "machine": "dagoma_discoeasy200_expert",
         "position": "0"
     },
     "settings":
@@ -236,7 +237,19 @@
                   "settable_per_extruder": true,
                   "settable_per_meshgroup": false,
                   "settable_globally": false
-                }
+                },
+                "machine_extruder_cooling_fan_number":
+                {
+                    "label": "Extruder Print Cooling Fan",
+                    "description": "The number of the print cooling fan associated with this extruder. Only change this from the default value of 0 when you have a different print cooling fan for each extruder.",
+                    "type": "int",
+                    "default_value": 0,
+                    "minimum_value": "0",
+                    "settable_per_mesh": false,
+                    "settable_per_extruder": true,
+                    "settable_per_meshgroup": false,
+                    "setttable_globally": false
+               }
             }
         },
         "material":
@@ -253,7 +266,7 @@
                     "description": "Adjusts the diameter of the filament used. Match this value with the diameter of the used filament.",
                     "unit": "mm",
                     "type": "float",
-                    "default_value": 2.85,
+                    "default_value": 1.75,
                     "minimum_value": "0.0001",
                     "minimum_value_warning": "0.4",
                     "maximum_value_warning": "3.5",

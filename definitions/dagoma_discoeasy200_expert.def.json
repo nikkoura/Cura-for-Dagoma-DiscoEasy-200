@@ -1,5 +1,5 @@
 {
-    "id": "Dagoma_discoeasy200_expert",
+    "id": "dagoma_discoeasy200_expert",
     "name": "Dagoma DiscoEasy200 Pack Expert",
     "version": 2,
     "inherits": "fdmprinter",
@@ -9,30 +9,26 @@
         "manufacturer": "Dagoma",
         "file_formats": "text/x-gcode",
         "icon": "icon_ultimaker2.png",
-        "platform": "discoeasy200.stl",
-        "platform_offset": [ 105, -59, 280],
+        "platform": "dagoma_discoeasy200.3mf",
+        "platform_offset": [0, -57, -39],
+        "has_variants": false,
+        "has_machine_quality": true,
+        "has_materials": true,
+        "preferred_material": "chromatik_pla",
         "machine_extruder_trains":
         {
-            "0": "dagoma_discoeasy200_expert_extruder_1"
+            "0": "dagoma_discoeasy200_expert_extruder-0"
         }
     },
     "overrides": {
         "machine_extruder_count": {"default_value": 1},
         "machine_use_extruder_offset_to_offset_coords": {"default_value": false},
         "machine_gcode_flavor": {"default_value": "Marlin"},
-        "machine_width": {"default_value": 211},
+        "machine_width": {"default_value": 203},
         "machine_height": {"default_value": 181},
-        "machine_depth": {"default_value": 211},
+        "machine_depth": {"default_value": 200},
         "machine_center_is_zero": {"default_value": false},
         "machine_nozzle_size": {"default_value": 0.4},
-        "machine_head_with_fans_polygon": {
-            "default_value": [
-                [16, 37],
-                [16, -65],
-                [-16, -65],
-                [16, 37]
-            ]
-        },
         "gantry_height": {"default_value": 55},
         "machine_heated_bed": {"default_value": true},
         "prime_blob_enable": { "enabled": true },
@@ -41,7 +37,7 @@
         "material_diameter": {"default_value": 1.75},
         "machine_start_gcode": {
             "default_value": "",
-            "value": "('M109 T1 S'+ str(int(extruderValue(1, 'material_print_temperature_layer_0')))+'\\n' if extruders_enabled_count==2 and extruderValue(1, 'prime_blob_enable') else '') + 'G90 ;Positionnement absolu\\nM107\\nG28 ;Initialisation des limites\\nM420 S1 ;Chargement cartographie plateau\\n\\n' + (';Amorce extrudeur 1\\nT0\\nG1 X'+str(int(extruderValue(0, 'extruder_prime_pos_x'))) + ' Y'+str(int(extruderValue(0, 'extruder_prime_pos_y')))+' Z3 F3000\\nG1 Z'+str(float(extruderValue(0, 'extruder_prime_pos_z')))+'\\nG92 E0\\nG1 E10 F200\\nG1 Z3\\nG92 E0;Reset extrudeur\\n' if extruderValue(0, 'prime_blob_enable') else '')+'\\n'+(';Amorce extrudeur 2\\nT1\\nG1 X'+str(int(extruderValue(1, 'extruder_prime_pos_x'))) + ' Y'+str(int(extruderValue(1, 'extruder_prime_pos_y')))+' Z3 F3000\\nG1 Z'+str(float(extruderValue(1, 'extruder_prime_pos_z')))+'\\nG92 E0\\nG1 E10 F200 ;Amorce extrudeur 2\\nG92 E0\\nT0\\nM104 T1 S'+str(int(extruderValue(1, 'material_standby_temperature'))) if extruders_enabled_count==2 and extruderValue(1, 'prime_blob_enable') else '') + '\\n\\n'"
+            "value": "('M109 T1 S'+ str(int(extruderValue(1, 'material_print_temperature_layer_0')))+'\\n' if extruders_enabled_count==2 and extruderValue(1, 'prime_blob_enable') else '') + 'G90 ;Positionnement absolu\\nM107\\nG28 ;Initialisation des limites\\nM420 S1 L0 C;Chargement cartographie plateau\\n\\n' + (';Amorce extrudeur 1\\nT0\\nG1 X'+str(int(extruderValue(0, 'extruder_prime_pos_x'))) + ' Y'+str(int(extruderValue(0, 'extruder_prime_pos_y')))+' Z3 F3000\\nG1 Z'+str(float(extruderValue(0, 'extruder_prime_pos_z')))+'\\nG92 E0\\nG1 E10 F200\\nG1 Z10\\nG92 E0;Reset extrudeur\\n' if extruderValue(0, 'prime_blob_enable') else '')+'\\n'+(';Amorce extrudeur 2\\nT1\\nG1 X'+str(int(extruderValue(1, 'extruder_prime_pos_x'))) + ' Y'+str(int(extruderValue(1, 'extruder_prime_pos_y')))+' Z3 F3000\\nG1 Z'+str(float(extruderValue(1, 'extruder_prime_pos_z')))+'\\nG92 E0\\nG1 E10 F200 ;Amorce extrudeur 2\\nG92 E0\\nT0\\nM104 T1 S'+str(int(extruderValue(1, 'material_standby_temperature'))) if extruders_enabled_count==2 and extruderValue(1, 'prime_blob_enable') else '') + '\\n\\n'"
         },
         "machine_end_gcode": {
             "default_value": "",
